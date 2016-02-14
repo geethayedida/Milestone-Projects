@@ -1,14 +1,14 @@
 # Milestone-Projects
 
-# This is the first milestone project in python. This project is about implementing blackjack in python.
+ This is the first milestone project in python. This project is about implementing blackjack in python.
 
 About Blackjack: 
-# In this project I am only implementing the one player version. The player plays with the dealer. 
-# The dealer says who won the game. The dealer also says if there is a bust.
-# The game is won if the sum of the cards is close to 21 and the dealer cards has a sum less than the player card sum
-# The player goes bust if the sum of his cards is more than 21 and he loses the game.
-# The card values are taken as they are for number cards. For an ace, the program asks the user for suggestion: 
-# if an ace must be considered as one or as zero. For other cards, the value is 10.
+ In this project I am only implementing the one player version. The player plays with the dealer. 
+ The dealer says who won the game. The dealer also says if there is a bust.
+ The game is won if the sum of the cards is close to 21 and the dealer cards has a sum less than the player card sum
+ The player goes bust if the sum of his cards is more than 21 and he loses the game.
+ The card values are taken as they are for number cards. For an ace, the program asks the user for suggestion: 
+ if an ace must be considered as one or as zero. For other cards, the value is 10.
 
 This is acheived in the following steps.
 1. The deck of cards is implemented using python lists.
