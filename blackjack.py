@@ -43,9 +43,7 @@ def main():
     dk = cds.deck()
     usercards = []
     dealercards = []
-    usercardvalues = []
-    d_sum = 0
-    us_sum = 0     
+    usercardvalues = []     
     dealercardvalues = []
     
       
@@ -72,9 +70,11 @@ def main():
         for card in dealercards:
                 print card
        
-    def playgame(total_amount, bet_amount,us_sum,d_sum):
+    def playgame(total_amount, bet_amount):
+        d_sum = 0
+        us_sum = 0
         try:
-            if bet_amount > 0 and bet_amount <= total_amount and total_amount > 5:
+            if bet_amount > 0 and bet_amount <= total_amount and total_amount >= 5 and total_amount <= 500:
                 print "Your Cards: "
                 car.playercards(dk,usercards)
                 printusercards()
@@ -87,8 +87,11 @@ def main():
                 getuseroption(user_sum,dealer_sum,total_amount,bet_amount)
             else:
                 print "Please enter amount greater than zero and less than total amount and total amount must be greater than 5"
+                bet = getbetamount()
+                playgame(total,bet)
         except:
             sys.exit()
+            
         
             
     def getuseroption(user_sum,dealer_sum,total,bet):
@@ -103,14 +106,17 @@ def main():
                 print "You Won!!"
                 total = total + bet
                 print "Your current balance is %d" %total
+                nextgame(total)                
                 
             elif dealer_sum > user_sum:
-                print "you loose :("
+                print "you lose :("
                 total = total - bet
                 print "Your current balance is %d" %total
+                nextgame(total)
             
             elif dealer_sum == user_sum:
                 print "Nobody Wins!!!"
+                nextgame(total)
         
         elif option.lower() == "hit":
             print "With your new card, you have: "
@@ -120,15 +126,16 @@ def main():
             print "The sum of your cards is: %d" %user_sum
             
             if user_sum > 21:
-                print "Sory that's a bust! :("
+                print "Sory. You lose. that's a bust! :("
                 total = total - bet
                 print "Your current balance is %d" %total
+                nextgame(total)
             
             elif user_sum == 21:
                 print "You won!!!"
                 total = total + bet
                 print "Your current balance is %d" %total
-            
+                nextgame(total)
                 
             else:
                 getuseroption(user_sum,dealer_sum,total,bet)
@@ -161,9 +168,10 @@ def main():
         for i in usercardvalues:
             sum_user = sum_user + i
         del usercardvalues[:]
+        
         return sum_user
-
-            
+                
+        
     def determinedealersum(deal_cards,deal_sum):
         sum_dealer = 0
         for card in deal_cards:
@@ -174,20 +182,37 @@ def main():
                 for i in r:
                     dealercardvalues.append(i)
             except:
-                dealercardvalues.append(10)
+                if r[0] == "ace":
+                    dealercardvalues.append(11)
+                else:
+                    dealercardvalues.append(10)
         for i in dealercardvalues:
             sum_dealer = sum_dealer + i
         del dealercardvalues[:]
         return sum_dealer
-    
-            
+        
+        
+    def nextgame(total):
+        if total > 5:
+            decision = raw_input("Do you want to play another game? Type YES or NO: ")
+            if decision.lower() == "yes":
+                del dealercards[:]
+                del usercards[:]
+                bet = getbetamount()
+                playgame(total,bet)
+            elif decision.lower() == "no":
+                print "Thank you for playing Blackjack!"
+            else:
+                print "Invalid Choice"
+        else:
+            print "Thank you for playing today."
+         
     def initialuseramount(total_amount):
         print "Your initial amount was: %d" %total_amount
    
     total = getuseramount()
     bet = getbetamount()
-    playgame(total,bet,us_sum,d_sum)
-    initialuseramount(total)     
+    playgame(total,bet)   
     
     
 if __name__ == '__main__':
