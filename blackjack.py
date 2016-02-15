@@ -86,7 +86,7 @@ def main():
                 dealer_sum = determinedealersum(dealercards,d_sum)
                 getuseroption(user_sum,dealer_sum,total_amount,bet_amount)
             else:
-                print "Please enter amount greater than zero and less than total amount and total amount must be greater than 5"
+                print "Please enter amount greater than zero, less than or equal to total amount and total amount must be greater than or equal to 5"
                 bet = getbetamount()
                 playgame(total,bet)
         except:
@@ -128,12 +128,6 @@ def main():
             if user_sum > 21:
                 print "Sory. You lose. that's a bust! :("
                 total = total - bet
-                print "Your current balance is %d" %total
-                nextgame(total)
-            
-            elif user_sum == 21:
-                print "You won!!!"
-                total = total + bet
                 print "Your current balance is %d" %total
                 nextgame(total)
                 
