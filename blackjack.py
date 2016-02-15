@@ -78,11 +78,11 @@ def main():
                 print "Your Cards: "
                 car.playercards(dk,usercards)
                 printusercards()
-                user_sum = determineusersum(usercards,us_sum)
-                print "The sum of your cards is: %d" %user_sum
                 print "Dealer Card is: "
-                car.drawsinglecarddealer(dk,dealercards)    
+                car.drawsinglecarddealer(dk,dealercards)
                 printdealercards()
+                user_sum = determineusersum(usercards,us_sum)
+                print "The sum of your cards is: %d" %user_sum  
                 dealer_sum = determinedealersum(dealercards,d_sum)
                 getuseroption(user_sum,dealer_sum,total_amount,bet_amount)
             else:
@@ -109,7 +109,7 @@ def main():
                 nextgame(total)                
                 
             elif dealer_sum > user_sum:
-                print "you lose :("
+                print "You lose :("
                 total = total - bet
                 print "Your current balance is %d" %total
                 nextgame(total)
