@@ -1,0 +1,29 @@
+commands used:
+
+1. download a zip folder and save in another name. 
+wget -O movies_data.zip http://files.groplens.org/datasets/movielens/ml-100k.zip
+
+2. unzip the zip file downloaded
+sudo apt-get install unzip
+unzip movies_data.zip
+
+3. run mapreduce example
+hadoop jar /home/ubuntu/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.4.jar wordcount hdfs:///wcinput hdfs:///wcoutput/wc2
+
+4. move data from local machine to hdfs
+hdfs dfs -put /home/ubuntu/inputfiles/ml-100k/u.data hdfs:///wcinput
+
+5. run the mapreduce from the mapper and reducer i created
+hadoop  jar /home/ubuntu/hadoop/share/hadoop/mapreduce/hadoop-streaming-2.6.0.jar -mapper /home/ubuntu/mapper.py -reducer /home/ubuntu/reducer.py -input hdfs:///wcinput/u.data -output hdfs:///wcoutput/wc3
+
+6.
+/dev/disk/by-label/cloudimg-rootfs
+
+7. local run
+cat /home/ubuntu/inputfiles/file2 | /home/ubuntu/mapper.py | sort |/home/ubuntu/reducer.py
+
+8. view output
+hadoop fs -cat hdfs:///wcoutput/wc3/part-00000
+
+9. delete
+hdfs dfs -rm -r hdfs:///wcoutput/wc3
